@@ -14,7 +14,9 @@ RUN mkdir -p /kaniko \
 	&& chmod 777 /kaniko
 COPY --from=kaniko /kaniko/* /kaniko/
 COPY --from=kaniko /kaniko/.docker /kaniko/.docker
+COPY src/docker-ce.repo /etc/yum.repos.d/docker-ce.repo
 
+RUN microdnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin 
 # Ensure the execute bits are set appropriatly
 RUN chmod +x /kaniko/executor \
 	&& chmod +x /kaniko/docker-credential-*
