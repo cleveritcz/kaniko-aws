@@ -3,14 +3,12 @@ ARG KANIKO_VERSION=latest
 FROM gcr.io/kaniko-project/executor:${KANIKO_VERSION} as kaniko
 
 # Our base image runtime image
-FROM debian:bullseye-slim
+FROM rockylinux:9-minimal
 
 # Install the required packages
-RUN apt-get -y update \
-	&& apt-get install -y curl wget ca-certificates --no-install-recommends \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
-
+RUN microdnf -y update \
+    && microdnf install -y curl ca-certificates 
+	
 # Copy everything over we need from the Kaniko image
 RUN mkdir -p /kaniko \
 	&& chmod 777 /kaniko
