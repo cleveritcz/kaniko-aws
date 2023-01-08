@@ -26,7 +26,7 @@ RUN rm /kaniko/certs/ca-certificates.crt \
 	&& ln -sf /etc/ssl/certs/ca-certificates.crt /kaniko/certs/ca-certificates.crt
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
+    unzip awscliv2.zip && rm -f awscliv2.zip && \
     ./aws/install
 
 # Set the env vars like Kaniko does, but with our own PATH
