@@ -7,7 +7,7 @@ FROM rockylinux:9-minimal
 
 # Install the required packages
 RUN microdnf -y update \
-    && microdnf install -y curl ca-certificates 
+    && microdnf install -y curl unzip ca-certificates 
 	
 # Copy everything over we need from the Kaniko image
 RUN mkdir -p /kaniko \
