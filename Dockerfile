@@ -1,6 +1,6 @@
 ## Start with the version of Kaniko that matches our defined version
 ARG KANIKO_VERSION=latest
-FROM gcr.io/kaniko-project/executor:v${KANIKO_VERSION}-debug AS kaniko
+FROM gcr.io/kaniko-project/executor:${KANIKO_VERSION}-debug AS kaniko
 
 # Our base image runtime image
 FROM debian:bullseye-slim
